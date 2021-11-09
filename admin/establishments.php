@@ -67,9 +67,9 @@
 										<td>'.$row['establishments_earn'].'</td>
 										<td class="text-center">
 											<div class="btn-group">
-												<a class="btn btn-outline-dark" href="update_establishment.php?establishment_id='.$row['establishments_id'].'&&establishments_name='.$row['establishments_name'].'&&establishments_desc='.$row['establishments_desc'].'">Update</a>
+												<a class="btn btn-outline-dark" href="update_establishment.php?establishment_id='.$row['establishments_id'].'&&establishments_name='.$row['establishments_name'].'&&establishments_desc='.$row['establishments_desc'].'&&establishments_mobile='.$row['establishments_mobile'].'">Update</a>
 
-                                                <a class="btn btn-outline-danger">Delete</a>
+                                                <a class="btn btn-outline-danger" href="src/delete_establishment.php?establishment_id='.$row['establishments_id'].'">Delete</a>
 											</div>
 										</td>
 										</tr>
