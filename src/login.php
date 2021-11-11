@@ -56,16 +56,16 @@ if(mysqli_num_rows($check_email) > 0){
                         if($stmt->execute()){
                             $output = array("result" => "5");
                         }else{
-                            echo $browser;
-                            echo "<br>";
-                            echo $os;
-                            echo "<br>";
-                            echo $ip;
-                            echo "<br>";
-                            echo $device;
-                            echo "<br>";
-                            echo $client_id;
-                            echo "<br>";
+//                             echo $browser;
+//                             echo "<br>";
+//                             echo $os;
+//                             echo "<br>";
+//                             echo $ip;
+//                             echo "<br>";
+//                             echo $device;
+//                             echo "<br>";
+//                             echo $client_id;
+//                             echo "<br>";
                             $output = "Error";
                         }
 
