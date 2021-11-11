@@ -1,9 +1,9 @@
 <?php
 // kani kay ang database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "barangaydb";
+$servername = "remotemysql.com";
+$username = "T8nKYLSbBK";
+$password = "KNLZUR9mHm";
+$dbname = "T8nKYLSbBK";
 $port = 3306;
 
 // Create connection
