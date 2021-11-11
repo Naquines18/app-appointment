@@ -56,16 +56,28 @@
 													$countApprovedRows = htmlspecialchars(mysqli_num_rows($countapproved));
 												?>
 												<tr>
-													<td class="text-danger"><i class="align-middle text-dark" data-feather="x"></i> Pending</td>
-													<td class="text-end"><?php echo $countPendingRows; ?></td>
+													<td class="text-danger">
+														<span class="badge bg-danger">Pending</span>
+													</td>
+													<td class="text-end">
+														<?php echo $countPendingRows; ?>
+													</td>
 												</tr>
 												<tr>
-													<td class="text-success"><i class="align-middle text-dark" data-feather="check"></i> Approved</td>
-													<td class="text-end"><?php echo $countApprovedRows; ?></td>
+													<td class="text-success">
+														<span class="badge bg-success">Approved</span> 
+													</td>
+													<td class="text-end">
+														<?php echo $countApprovedRows; ?>
+													</td>
 												</tr>
 												<tr>
-													<td class="text-primary"><i class="align-middle text-dark" data-feather="check"></i> Finished</td>
-													<td class="text-end"><?php echo $countFinishedRows; ?></td>
+													<td class="text-primary">
+														<span class="badge bg-primary">Finished</span> 
+													</td>
+													<td class="text-end">
+														<?php echo $countFinishedRows; ?>
+													</td>
 												</tr>
 											</tbody>
 										</table>
@@ -126,7 +138,7 @@
 										
 											while($row = $result->fetch_assoc()){
 											echo '
-											<tr>
+											<tr class="text-center">
 												<td>'.$i++.'.</td>
 												<td>'.$row['appointment_fullname'].'</td>
 												<td>'.$row['gender'].'</td>
@@ -135,7 +147,7 @@
 													<div class="btn-group text-center">';
 														if($row['status'] == "Pending"){
 															echo '<button class="btn btn-danger">Pending</button>';
-															echo '<button class="btn btn-danger" id="cancel" data-id="'.$row["appointment_id"].'">Cancel</button>';
+															echo '<button class="btn btn-primary" id="cancel" data-id="'.$row["appointment_id"].'">Cancel</button>';
 														}else if($row['status'] == "Approved"){
 								
 
@@ -446,13 +458,13 @@
 	document.addEventListener("DOMContentLoaded", function() {
 		// Pie chart
 		new Chart(document.getElementById("chartjs-dashboard-pie"), {
-			type: "pie",
+			type: "line",
 			data: {
 				labels: ["Pending","Approved","Finished"],
 				datasets: [{
 					data: [<?php echo $count; ?>,<?php echo $count__1; ?>, <?php echo $count__0; ?>],
 					backgroundColor: [
-						window.theme.danger,
+						window.theme.primary,
 						window.theme.warning,
 						window.theme.dark,
 					],

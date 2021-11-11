@@ -28,23 +28,40 @@
 							<div class="card flex-fill w-100">
 								<div class="card-header">
 									<h3>Pay using your QR CODE here: </h3>
-									<p class="text-muted">Scan your QR CODE and pay 100 pesos to the cashier.</p>
+									<p class="text-muted">Scan your QR CODE and pay 100 pesos to the cashier. <span class="text-warning">If you want to with a establishment <br> please select a establishment name on the select input below.<span></p>
 								</div>
-								<div class="card-body py-3">
+								<div class="card-body">
 									<div class="row">
 									<div class="col-md-1"></div>
 										<div class="col-md-10">
+											<form action="src/pay_scan.php" method="post">
+
+												<select name="payment_method" class="form-select" id="payment_method">
+													<option value="Payment" selected>Payment</option>
+													<option value="Establishment Payment">Establishment Payment</option>
+												</select>
+												<small class="text-muted">You can leave this field as default.</small>
+												<br>
+												<select name="establishments" class="form-select" id="establishments">
+													<?php
+														$query = mysqli_query($conn,"SELECT * FROM establishments");
+														echo '<option value="none" selected>Select Establishment</option>';
+														foreach($query as $row){
+															echo '<option value="'.$row["establishments_name"].'">'.$row["establishments_name"].'</option>';
+														}
+													?>
+												</select>
+												<small class="text-muted mb-2">You can leave this field as blank</small>
+
+												<input type="hidden" id="payment_user" class="form-control" name="payment_user">
+											</form>
+											<br>
 											<div class="embed-responsive embed-responsive-16by9 text-center">
 												<video id="preview" style="width: 100%; height:auto;" ></video>
 											</div>
 										</div>
 									<div class="col-md-1"></div>
 									</div>
-								</div>
-								<div class="card-footer">
-									<form action="src/pay_scan.php" method="post">
-										<input type="hidden" id="payment_user" class="form-control" name="payment_user">
-									</form>
 								</div>
 
 								<div class="row">
@@ -133,6 +150,27 @@
             		";
             	}
             ?>
+
+			<?php
+            	if(isset($_GET['sucess_payment'])){
+            		echo "
+            			Swal.fire(
+            			'Success Message',
+            			'You have successfully payed',
+            			'success'
+            			)
+            		";
+            	}else if(isset($_GET['error_payment'])){
+            		echo "
+            			Swal.fire(
+            			'Error Message',
+            			'There is a problem when you are trying to pay , please try again',
+            			'error'
+            			)
+            		";
+            	}
+            ?>
+
 		});
 	</script>
 </body>

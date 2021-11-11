@@ -4,7 +4,7 @@ require_once 'config.php';
 include('phpqrcode-master/qrlib.php');
 
 
-if(isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['age']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['city']) && isset($_POST['gender']) && isset($_POST['staff']) && isset($_POST['comment']) && isset($_POST['date']) && isset($_POST['time'])){
+if(isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['age']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['city']) && isset($_POST['gender']) && isset($_POST['staff']) && isset($_POST['comment']) && isset($_POST['date']) && isset($_POST['time']) && isset($_POST['establishments'])){
 
     function validate($data){
         $data = htmlspecialchars($data);
@@ -24,6 +24,7 @@ if(isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['age']) &
     $comment    = mysqli_real_escape_string($conn, $_POST["comment"]);
     $date       = mysqli_real_escape_string($conn, $_POST["date"]);
     $time       = mysqli_real_escape_string($conn, $_POST["time"]);
+    $establishments       = mysqli_real_escape_string($conn, $_POST["establishments"]);
 
 
     $check_appointment = mysqli_query($conn,"SELECT * FROM appointments WHERE appointment_email = '$email'");
@@ -54,12 +55,11 @@ if(isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['age']) &
     $scan_time     = validate($time);
 
 
-    $stmt = $conn->prepare("INSERT INTO `appointments`( `appointment_fullname`, `appointment_email`, `age`, `phone`, `address`, `city`, `gender`, `patient_comment`, `patient_doctor`, `appointment_created`, `date`,`time`,`status`) VALUES (?,?,?,?,?,?,?,?,?,NOW(),?,?,'Pending')");
+    $stmt = $conn->prepare("INSERT INTO `appointments`( `appointment_fullname`, `appointment_email`, `age`, `phone`, `address`, `city`, `gender`, `patient_comment`, `patient_doctor`,`establishment`,`appointment_created`, `date`,`time`,`status`) VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),?,?,'Pending')");
 
-    $stmt->bind_param("sssssssssss",$scan_fullname,$scan_email,$scan_age,$scan_phone,$scan_address,$scan_city,$scan_gender,$scan_comment,$scan_staff,$scan_date,$scan_time);
+    $stmt->bind_param("ssssssssssss",$scan_fullname,$scan_email,$scan_age,$scan_phone,$scan_address,$scan_city,$scan_gender,$scan_comment,$scan_staff,$establishments,$scan_date,$scan_time);
     if($stmt->execute() == TRUE){
         $codeContents = "";
-
 
 
         $main_digit = "456734";

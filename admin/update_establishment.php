@@ -1,10 +1,15 @@
 <?php include "src/validation_loggedin.php"; ?>
+<?php
+if(!isset($_GET["establishments_mobile"]) && !isset($_GET["establishments_desc"]) && !isset($_GET["establishments_name"]) && !isset($_GET["establishment_id"]) && !isset($_GET["amount"])){
+    header("location: establishments.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <?php include "includes/meta.php"; ?>
-        <title>Dasboard | Add Establisment | MIST Appointment System</title>
+        <title>Dasboard | Update Establisment | MIST Appointment System</title>
         <link href="css/app.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     </head>
@@ -26,28 +31,29 @@
                                             <p>Please fill up all the fields with the correct information to avoid conflict in the feauture.</p>
                                         </div>
                                         <div class="card-body py-3">
-                                            <form action="src/add_establishment.php" method="post">
+                                            <form action="src/update_establishment.php" method="post">
                                              
 
                                                 <div class="form-group mb-3">
-                                                    <input class="form-control mb-3" type="text" id="estab_name" name="estab_name" placeholder="Establisment Name" required>
+                                                    <input class="form-control mb-3" type="hidden" id="estab_id" name="estab_id" placeholder="Establisment Name" value="<?php echo $_GET["establishment_id"]; ?>" required>
+                                                    <input class="form-control mb-3" type="text" id="estab_name" name="estab_name" placeholder="Establisment Name" value="<?php echo $_GET["establishments_name"]; ?>" required readonly>
                                                 </div>
 
                                                 <div class="form-group mb-3">
-                                                    <input class="form-control mb-3" type="number" id="estab_amount" name="estab_amount" placeholder="Establisment Payment Amount" required>
+                                                    <input class="form-control mb-3" type="number" id="estab_mobile" name="estab_mobile" placeholder="Establisment Mobile Number" value="<?php echo $_GET["establishments_mobile"]; ?>" required>
                                                 </div>
 
                                                 <div class="form-group mb-3">
-                                                    <input class="form-control mb-3" type="number" id="estab_mobile" name="estab_mobile" placeholder="Establisment Mobile Number" required>
+                                                    <input class="form-control mb-3" type="number" id="estab_amount" name="estab_amount" placeholder="Establisment Payment Amount" value="<?php echo $_GET["amount"]; ?>" required>
                                                 </div>
 
                                                 <div class="form-group mb-3">
-                                                    <textarea name="estab_desc" id="estab_desc" cols="30" rows="7" class="form-control" placeholder="Establisment Description" required></textarea>
+                                                    <textarea name="estab_desc" id="estab_desc" cols="30" rows="7" class="form-control" placeholder="Establisment Description" required><?php echo $_GET["establishments_desc"]; ?></textarea>
                                                 </div>
 
 
                                                 <div class="form-group mb-2">
-                                                    <button type="submit" class="btn btn-dark">Submit Establisment</button>
+                                                    <button type="submit" class="btn btn-dark">Update Establisment</button>
                                                 </div>
 
 

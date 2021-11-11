@@ -62,6 +62,7 @@
                                             </div>
 
 
+
                                             <div class="col-md-4">
                                             <div class="form-group mb-2">
                                                     <input class="form-control mb-3" type="number" id="phone" name="phone" placeholder="Your current mobile number" title="Your working mobile number?">
@@ -116,6 +117,18 @@
                                             ?>
                                         </select>
                                         </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <select name="establishments" class="form-control" id="establishments" required>
+                                            <?php
+                                                $query = mysqli_query($conn,"SELECT * FROM establishments");
+                                                echo '<option value="none" selected>Select Establishment</option>';
+                                                foreach($query as $row){
+                                                    echo '<option value="'.$row["establishments_id"].'">'.$row["establishments_name"].'</option>';
+                                                }
+                                            ?>
+                                            </select>
                                         </div>
 
                                         <div class="form-group mb-2">

@@ -7,36 +7,36 @@
         <ul class="navbar-nav navbar-align">
             <?php
 
-            if($role == "1"){
-                echo '
-                <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
-                    <div class="position-relative">
-                        <i class="align-middle" data-feather="message-square"></i>
-                        <div id="message_count">
+            // if($role == "1"){
+            //     echo '
+            //     <li class="nav-item dropdown">
+            //     <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
+            //         <div class="position-relative">
+            //             <i class="align-middle" data-feather="message-square"></i>
+            //             <div id="message_count">
 
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
-                    <div class="dropdown-menu-header">
-                        <div class="position-relative">
-                            Messages
-                        </div>
-                    </div>
-                    <div class="list-group" id="message_list" style="overflow-x: auto; height: 300px;">
+            //             </div>
+            //         </div>
+            //     </a>
+            //     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
+            //         <div class="dropdown-menu-header">
+            //             <div class="position-relative">
+            //                 Messages
+            //             </div>
+            //         </div>
+            //         <div class="list-group" id="message_list" style="overflow-x: auto; height: 300px;">
 
 
-                    </div>
-                    <div class="dropdown-menu-footer">
-                        <a href="#" class="text-muted">Show all messages</a>
-                    </div>
-                </div>
-            </li>
-                ';
-            }else{
-                echo '';
-            }
+            //         </div>
+            //         <div class="dropdown-menu-footer">
+            //             <a href="#" class="text-muted">Show all messages</a>
+            //         </div>
+            //     </div>
+            // </li>
+            //     ';
+            // }else{
+            //     echo '';
+            // }
             ?>
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">

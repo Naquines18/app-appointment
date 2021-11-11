@@ -5,7 +5,7 @@
 
 <head>
     <?php include "includes/meta.php"; ?>
-	<title>Dashboard | Establishment Settings | MIST Appointment System</title>
+	<title>Dashboard | Establishment Payment List | MIST Appointment System</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.2/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
@@ -24,12 +24,7 @@
 
 						<div class="card-header">
 
-						<h3>Manage Establishment Data</h3>
-								
-
-							<div align="right">
-								<a href="add_establishment.php" class="btn btn-dark"><i class="align-middle text-white" data-feather="plus"></i> Create Establishment</a>
-							</div>   
+						<h3>Establishment Payment List</h3>
 							
 						</div>                        
 						
@@ -46,43 +41,36 @@
                                         <tr class="text-center">
                                             <th>No.</th>
                                             <th>Establishment</th>
-                                            <th>Establishment Description</th>
-                                            <th>Establishment Mobile No</th>
-											<th>Establishment Payment</th>
-											<th>Establishment Total Money</th>
-                                            <th>Manage</th>
+                                            <th>Payed By</th>
+                                            <th>Amount</th>
+											<th>Gender</th>
+											<th>Age</th>
+                                            <th>Address</th>
+                                            <th>City</th>
+                                            <th>Staff</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>';
-                                    $stmt = $conn->prepare("SELECT * FROM `establishments` ");
+                                    $stmt = $conn->prepare("SELECT * FROM `establisment_payments` ");
 									$stmt->execute();
 									$result = $stmt->get_result();
 									$i = 1;
 									while($row = $result->fetch_assoc()){
 									
-									$getAllMoney = mysqli_query($conn,"SELECT SUM(amount) FROM establisment_payments WHERE establishment = '".$row["establishments_name"]."' ");
-									$fetch = mysqli_fetch_array($getAllMoney);
-
-									if(mysqli_num_rows($getAllMoney) > 0){
-										for($int = 0; count($fetch) < 0; $int++){
-											// echo $int;
-										}
-									}
 									echo '
 									<tbody>
-									<tr class="text-center">
-										<td>'.$i++.'</td>
-										<td>'.$row['establishments_name'].'</td>
-										<td>'.$row['establishments_desc'].'</td>
-										<td>'.$row['establishments_mobile'].'</td>
-										<td>'.$row['establishment_payment_amout'].'</td>
-										<td> <span class="badge bg-primary"> ₱ '.number_format($fetch[$int++],0,".",",").'  </span> </td>
-										<td class="text-center">
-											<div class="btn-group">
-												<a class="btn btn-outline-dark" href="update_establishment.php?establishment_id='.$row['establishments_id'].'&&establishments_name='.$row['establishments_name'].'&&establishments_desc='.$row['establishments_desc'].'&&establishments_mobile='.$row['establishments_mobile'].'&&amount='.$row['establishment_payment_amout'].'">Update</a>
-                                                <a class="btn btn-outline-danger" href="src/delete_establishment.php?establishment_id='.$row['establishments_id'].'">Delete</a>
-											</div>
-										</td>
-										</tr>
+                                        <tr class="text-center">
+                                            <td>'.$i++.'</td>
+                                            <td>'.$row['establishment'].'</td>
+                                            <td>'.$row['paid_by'].'</td>
+                                            <td>'.$row['amount'].'</td>
+                                            <td>'.$row['gender'].'</td>
+                                            <td>'.$row['age'].'</td>
+                                            <td>'.$row['address'].'</td>
+                                            <td>'.$row['city'].'</td>
+                                            <td>'.$row['staff'].'</td>
+                                            <td>'.$row['date'].'</td>
+                                        </tr>
 									</tbody>
 									';
 									}
